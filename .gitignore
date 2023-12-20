@@ -1,0 +1,16 @@
+# Node Modules
+/node_modules
+
+# Dist
+/dist
+
+# Database
+/mysql
+
+# Eslint
+.eslintcache
+
+# Variables
+*.env*
+!.env.example
+.vercel
