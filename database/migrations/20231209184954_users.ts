@@ -3,7 +3,7 @@ import { Knex } from 'knex';
 export async function up(knex: Knex): Promise<void> {
   const USER_TYPES = [
     'ADMINISTRATOR',
-    'DEFAULT',
+    'USER',
   ];
   await knex.schema.createTable('users', table => {
     table.bigIncrements('id')
@@ -11,8 +11,11 @@ export async function up(knex: Knex): Promise<void> {
 
     table.string('name', 200)
       .notNullable();
+
     table.string('email', 256)
-      .unique();
+      .unique()
+      .notNullable();
+
     table.string('password', 100)
       .notNullable();
 

@@ -1,9 +1,8 @@
 import Joi from 'joi';
 
 export enum UserType {
-    ADMINISTRATOR = 'ADMINISTRATOR',
-    CLIENT = 'CLIENT',
-    ARTISAN = 'ARTISAN',
+  ADMINISTRATOR = 'ADMINISTRATOR',
+  USER = 'USER',
 }
 
 const createUserSchema = Joi.object({
@@ -24,8 +23,7 @@ const createUserSchema = Joi.object({
     .max(100)
     .required(),
   user_type: Joi.string()
-    .valid(...Object.values(UserType))
-    .required(),
+    .valid(...Object.values(UserType.USER)),
 });
 
 const loginSchema = Joi.object({
