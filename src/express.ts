@@ -5,6 +5,7 @@ import cors from 'cors';
 
 import users from './domains/users/routes';
 import categories from './domains/categories/routes';
+import lists from './domains/lists/routes';
 
 const app = express();
 
@@ -19,5 +20,7 @@ app.get('/', (_request: Request, response: Response) => { response.send('Caminho
 app.use('/users', users);
 
 app.use('/categories', categories);
+
+app.use('/lists', lists);
 
 export default app;
