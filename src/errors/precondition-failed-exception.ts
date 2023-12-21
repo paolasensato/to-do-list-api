@@ -6,7 +6,7 @@ function preconditionFailedError(response: Response, message?: string) {
     : 'Preconditional failed error';
 
   response.status(412)
-    .send({ 412: messageToSend });
+    .send(messageToSend );
 }
 
 export default preconditionFailedError;
