@@ -4,6 +4,7 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 
 import users from './domains/users/routes';
+import categories from './domains/categories/routes';
 
 const app = express();
 
@@ -17,5 +18,6 @@ app.get('/', (_request: Request, response: Response) => { response.send('Caminho
 
 app.use('/users', users);
 
+app.use('/categories', categories);
 
 export default app;
