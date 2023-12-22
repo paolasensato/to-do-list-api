@@ -18,6 +18,19 @@ async function createList(request: Request, response: Response, next: NextFuncti
     const {error} = listSchema.validate(values);
 
     if (error) badRequestError(response, error.details[0].message);
+
+    if(values.tasks) {
+      const listWithTasks = await List.transaction(async transacting => {
+        const list = await List.query(transacting)
+          .insertGraphAndFetch(values);
+      
+        return list;
+      });
+      
+      return response.status(200)
+        .json(listWithTasks);
+      
+    }
   
     const list = await List.query().insertAndFetch(values);
 

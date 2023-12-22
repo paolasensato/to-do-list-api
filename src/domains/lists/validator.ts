@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import { createTaskSchema } from '../tasks/validator';
 
 const listSchema = Joi.object({
   name: Joi.string()
@@ -9,6 +10,9 @@ const listSchema = Joi.object({
   user_id: Joi.number()
     .required(),
   category_id: Joi.number(),
+  tasks: Joi.array().items(
+    createTaskSchema
+  )
 });
 
 export {

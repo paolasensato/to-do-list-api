@@ -1,6 +1,7 @@
 import { Model } from 'objection';
 import User from '../users/model';
 import Category from '../categories/model';
+import Task from '../tasks/model';
 
 class List extends Model {
   static get tableName() {
@@ -41,6 +42,14 @@ class List extends Model {
           to: 'categories.id'
         }
       },
+      tasks: {
+        relation: List.HasManyRelation,
+        modelClass: Task,
+        join: {
+          from: 'lists.id',
+          to: 'tasks.list_id'
+        }
+      }
     };
   }
 }
