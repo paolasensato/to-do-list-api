@@ -6,6 +6,7 @@ import cors from 'cors';
 import users from './domains/users/routes';
 import categories from './domains/categories/routes';
 import lists from './domains/lists/routes';
+import tasks from './domains/tasks/routes';
 
 const app = express();
 
@@ -22,5 +23,7 @@ app.use('/users', users);
 app.use('/categories', categories);
 
 app.use('/lists', lists);
+
+app.use('/tasks', tasks);
 
 export default app;
