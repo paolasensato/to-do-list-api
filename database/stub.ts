@@ -13,7 +13,7 @@ export async function up(knex: Knex): Promise<void> {
         
     table.string('column_name', 200);
 
-    table.timestamps(true, true);
+    table.timestamps(true, false);
     table.dateTime('deleted_at')
       .index();
   });

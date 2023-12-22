@@ -24,7 +24,7 @@ export async function up(knex: Knex): Promise<void> {
       .notNullable()
       .defaultTo(true);
 
-    table.timestamps(true, true);
+    table.timestamps(true, false);
     table.dateTime('deleted_at')
       .index();
   });

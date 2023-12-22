@@ -16,7 +16,7 @@ export async function up(knex: Knex): Promise<void> {
 
     table.unique(['user_id', 'category']);
 
-    table.timestamps(true, true);
+    table.timestamps(true, false);
     table.dateTime('deleted_at')
       .index();
   });
