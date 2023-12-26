@@ -62,7 +62,41 @@ async function getTasks (request: Request, response: Response, next: NextFunctio
   }
 }
 
+async function getTask(request: Request, response: Response, next: NextFunction) {
+  try {
+    const { user, params } = request;
+
+    const { task_id: idTask } = params;
+
+    const task = await Task.query()
+      .join('lists', 'tasks.list_id', 'lists.id')
+      .findById(idTask)
+      .where('lists.user_id', user.id)
+      .where('tasks.deleted_at', null)
+      .where('lists.deleted_at', null)
+      .withGraphFetched('list(list)')
+      .modifiers({
+        list(builder) {
+          builder.select([
+            'id',
+            'name',
+            'status',
+          ])
+            .where('deleted_at', null);
+        },
+      });
+
+    if (!task) return notFoundError(response);
+
+    response.status(200)
+      .json(task);
+  } catch (error) {
+    next(error);
+  }
+}
+
 export default {
   createTask,
-  getTasks
+  getTasks,
+  getTask
 };
