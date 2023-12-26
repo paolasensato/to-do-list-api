@@ -38,8 +38,8 @@ class List extends Model {
         relation: List.HasOneRelation,
         modelClass: Category,
         join: {
-          from: 'lists.category_id',
-          to: 'categories.id'
+          from: 'categories.id',
+          to: 'lists.category_id'
         }
       },
       tasks: {

@@ -15,6 +15,18 @@ const listSchema = Joi.object({
   )
 });
 
+const querySchema = Joi.object({
+  name: Joi.string()
+    .allow(null, ''),
+  task: Joi.string()
+    .allow(null, ''),
+  category: Joi.string()
+    .allow(null, ''),
+  status: Joi.boolean()
+    .allow(null, ''),
+});
+
 export {
   listSchema,
+  querySchema
 };

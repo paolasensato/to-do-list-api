@@ -7,5 +7,7 @@ const router = express.Router();
 router.use(authMiddleware);
 
 router.post('/', controllers.createList);
+router.get('/', controllers.getLists);
+router.get('/:list_id', controllers.getList);
 
 export default router;
