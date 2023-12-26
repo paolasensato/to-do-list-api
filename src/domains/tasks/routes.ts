@@ -7,5 +7,6 @@ const router = express.Router();
 router.use(authMiddleware);
 
 router.post('/', controllers.createTask);
+router.get('/', controllers.getTasks);
 
 export default router;

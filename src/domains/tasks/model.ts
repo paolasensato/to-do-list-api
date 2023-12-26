@@ -32,8 +32,8 @@ class Task extends Model {
         relation: Task.BelongsToOneRelation,
         modelClass: List,
         join: {
-          from: 'tasks.list_id',
-          to: 'lists.id'
+          from: 'lists.id',
+          to: 'tasks.list_id'
         }
       }
     };

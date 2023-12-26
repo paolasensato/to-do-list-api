@@ -33,6 +33,36 @@ async function createTask(request: Request, response: Response, next: NextFuncti
   }
 }
 
+async function getTasks (request: Request, response: Response, next: NextFunction) {
+  try {
+    const {user} = request;
+
+    const tasks = await Task.query()
+      .join('lists', 'tasks.list_id', 'lists.id')
+      .where('lists.user_id', user.id)
+      .where('tasks.status', true)
+      .where('tasks.deleted_at', null)
+      .where('lists.status', true)
+      .where('lists.deleted_at', null)
+      .withGraphFetched('list(list)')
+      .modifiers({
+        list(builder) {
+          builder.select([
+            'lists.id',
+            'lists.user_id',
+            'lists.name',
+          ]);
+        },
+      });
+
+    response.status(200)
+      .json(tasks);
+  } catch (error) {
+    next(error);
+  }
+}
+
 export default {
-  createTask
+  createTask,
+  getTasks
 };
