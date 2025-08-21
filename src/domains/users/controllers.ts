@@ -7,7 +7,6 @@ import bcrypt from 'bcryptjs';
 import User from './model';
 import forbiddenError from '../../errors/forbidden-error';
 
-
 export async function alredyExistsEmail(email: string) {
   return User.query()
     .where('email', email)

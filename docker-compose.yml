@@ -7,13 +7,8 @@ services:
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
-    environment:
-      - NODE_ENV=development
-      - DB_HOST=db
-      - DB_PORT=3306
-      - DB_NAME=to_do_list
-      - DB_USER=root
-      - DB_PASS=root
+    env_file:
+      - .env
     command: yarn dev
     depends_on:
       - db
